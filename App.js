@@ -1,6 +1,23 @@
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { MealsScreen, Modal } from "./screen";
+import { MealsScreen, Modal, Login, Register, AuthLoading } from "./screen";
+global.BASE_URL = "https://serverless.the3dgar.vercel.app"
+
+const OnBoardingNavigator = createStackNavigator(
+  {
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        title: "Almuerzi",
+        headerTitleAlign: "center"
+      }
+    },
+    Register,
+  },
+  {
+    initialRouteName: "Login",
+  }
+);
 
 const AppNavigator = createStackNavigator(
   {
@@ -16,7 +33,6 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-
 const RootStack = createStackNavigator(
   {
     Main: AppNavigator,
@@ -28,4 +44,15 @@ const RootStack = createStackNavigator(
   }
 );
 
-export default createAppContainer(RootStack);
+const BaseStack = createSwitchNavigator(
+  {
+    AuthLoading,
+    OnBoarding: OnBoardingNavigator,
+    Root: RootStack,
+  },
+  {
+    initialRouteName: "AuthLoading",
+  }
+);
+
+export default createAppContainer(BaseStack);
