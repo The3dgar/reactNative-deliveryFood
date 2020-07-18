@@ -8,11 +8,17 @@ const OnBoardingNavigator = createStackNavigator(
     Login: {
       screen: Login,
       navigationOptions: {
-        title: "Almuerzi",
+        title: "Peddi",
         headerTitleAlign: "center"
       }
     },
-    Register,
+    Register:{
+      screen: Register,
+      navigationOptions:{
+        title: "Crear cuenta",
+        headerTitleAlign: "center"
+      }
+    },
   },
   {
     initialRouteName: "Login",
@@ -24,6 +30,7 @@ const AppNavigator = createStackNavigator(
     Meals: {
       navigationOptions: {
         title: "Comidas disponibles",
+        headerTitleAlign: "center"
       },
       screen: MealsScreen,
     },
@@ -35,12 +42,24 @@ const AppNavigator = createStackNavigator(
 
 const RootStack = createStackNavigator(
   {
-    Main: AppNavigator,
-    Modal: Modal,
+    Main: {
+      screen:AppNavigator,
+      navigationOptions:{
+        title: "Comidas disponibles",
+        headerTitleAlign: "center"
+      }
+    },
+    Modal: {
+      screen: Modal,
+      navigationOptions: {
+        title: "Detalles",
+        headerTitleAlign: "center"
+      }
+    },
   },
   {
     mode: "modal",
-    headerMode: "none",
+    headerMode: "screen",
   }
 );
 

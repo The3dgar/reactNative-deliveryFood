@@ -9,9 +9,7 @@ import {
 export default ({ navigation }) => {
   useEffect(() => {
     AsyncStorage.getItem("token").then((token) => {
-      setTimeout(() => {
-        navigation.navigate(token ? "Root" : "OnBoarding");
-      }, 1000);
+      navigation.navigate(token ? "Root" : "OnBoarding");
     });
   }, []);
   return (
